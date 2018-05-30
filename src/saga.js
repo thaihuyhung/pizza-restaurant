@@ -1,8 +1,8 @@
 import { all, fork } from "redux-saga/lib/effects";
-import homePageWatcher from  './containers/HomePage/saga';
+import restaurantsWatcher from  './containers/RestaurantList/saga';
 
 export default function* rootSaga() {
   yield all([
-    fork(homePageWatcher)
+    fork(restaurantsWatcher)
   ]);
 }

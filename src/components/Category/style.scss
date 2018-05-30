@@ -1,0 +1,15 @@
+.category {
+  background-color: #FFF;
+  border: 1px solid #1a9cb7;
+  color: #1a9cb7;
+  padding: 4px;
+  border-radius: 4px;
+  transition: all 250ms linear;
+  font-size: 13px;
+  text-transform: capitalize;
+  &:hover {
+    cursor: pointer;
+    color: #FFF;
+    background-color: #1a9cb7;
+  }
+}

@@ -1,8 +1,9 @@
-import { createStore, applyMiddleware, compose } from 'redux'
+
+import { fromJS } from 'immutable'
+import { routerMiddleware } from 'react-router-redux'
+import { applyMiddleware, compose, createStore } from 'redux'
 import createSagaMiddleware, { END } from 'redux-saga'
 import rootReducer from  './reducer'
-import { fromJS } from 'immutable'
-import { routerMiddleware } from 'react-router-redux';
 
 export default function configureStore(initialState, history) {
   const sagaMiddleware = createSagaMiddleware()
@@ -18,8 +19,9 @@ export default function configureStore(initialState, history) {
       window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
     )
   )
-
-  store.runSaga = sagaMiddleware.run
-  store.close = () => store.dispatch(END)
-  return store
+  return {
+    ...store,
+    close: () => store.dispatch(END),
+    runSaga: sagaMiddleware.run
+  }
 }

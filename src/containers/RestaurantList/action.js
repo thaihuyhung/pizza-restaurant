@@ -4,10 +4,9 @@ import {
   QUERY_RESTAURANTS_SUCCESS
 } from './constant';
 
-export function queryRestaurants(param) {
+export function queryRestaurants() {
   return {
-    type: QUERY_RESTAURANTS,
-    param
+    type: QUERY_RESTAURANTS
   };
 }
 

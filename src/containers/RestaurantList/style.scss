@@ -1,0 +1,18 @@
+.res-list {
+  padding: 24px;
+  &__logo {
+    width: 180px;
+  }
+  &__actions {
+    display: flex;
+    align-content: center;
+    justify-content: flex-end;
+    align-items: center;
+    margin-bottom: 32px;
+  }
+  &__action {
+    &:not(:last-child) {
+      margin-right: 16px;
+    }
+  }
+}

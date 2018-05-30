@@ -1,7 +1,8 @@
 import { fromJS } from 'immutable'
 import { combineReducers } from 'redux-immutable'
-import homePageReducer from './containers/HomePage/saga'
+import restaurantsReducer from './containers/RestaurantList/reducer'
 import { LOCATION_CHANGE } from 'react-router-redux'
+
 /*
  * routeReducer
  *
@@ -12,7 +13,7 @@ import { LOCATION_CHANGE } from 'react-router-redux'
 
 // Initial routing state
 const routeInitialState = fromJS({
-  location: null,
+  locationBeforeTransitions: null,
 });
 
 /**
@@ -35,5 +36,5 @@ function routeReducer(state = routeInitialState, action) {
  */
 export default combineReducers({
   routing: routeReducer,
-  home: homePageReducer
+  restaurants: restaurantsReducer
 });

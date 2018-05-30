@@ -6,6 +6,7 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const devMode = process.env.NODE_ENV !== 'production'
 
 module.exports = {
+  mode: process.env.NODE_ENV,
   entry: ['babel-polyfill', './src/index.js'],
   module: {
     rules: [
@@ -22,6 +23,30 @@ module.exports = {
           'css-loader',
           'sass-loader',
         ]
+      },
+      {
+        test: /\.(jpg|png|gif)$/,
+        use: [
+          'file-loader',
+          {
+            loader: 'image-webpack-loader',
+            options: {
+              mozjpeg: {
+                progressive: true,
+              },
+              gifsicle: {
+                interlaced: false,
+              },
+              optipng: {
+                optimizationLevel: 4,
+              },
+              pngquant: {
+                quality: '75-90',
+                speed: 3,
+              },
+            },
+          },
+        ],
       }
     ]
   },
@@ -37,12 +62,16 @@ module.exports = {
       inject: true
     })
   ],
-  devServer: {
-    contentBase: './dist'
-  },
   output: {
     filename: '[name].bundle.js',
     path: path.resolve(__dirname, 'dist')
+  },
+  resolve: {
+    extensions: ['.js', '.jsx', '.scss'],
+    alias: {
+      assets: path.resolve(__dirname, 'assets'),
+      src: path.resolve(__dirname, 'src')
+    }
   }
 }
 

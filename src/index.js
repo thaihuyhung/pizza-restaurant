@@ -1,15 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { Router, Route } from 'react-router'
-import createHistory from 'history/createBrowserHistory';
+import { Router, Route, Redirect, Switch } from 'react-router'
+import { createBrowserHistory } from 'history';
 import configureStore from './configureStore';
 import rootSaga from './saga';
-import HomePage from './containers/HomePage'
-import './index.scss';
+import RestaurantList from './containers/RestaurantList'
+import RestaurantDetail from './containers/RestaurantDetail';
+import './style.scss';
 
 const initialState = {};
-const history = createHistory();
+const history = createBrowserHistory();
 const store = configureStore(initialState, history);
 
 store.runSaga(rootSaga);
@@ -17,6 +18,10 @@ store.runSaga(rootSaga);
 ReactDOM.render(
   <Provider store={store}>
     <Router history={history}>
-      <Route path="/" component={HomePage} />
+      <Switch>
+        <Route exact path="/restaurant" component={RestaurantDetail} />
+        <Route exact path="/restaurants" component={RestaurantList} />
+        <Redirect from="*" to="/restaurants"/>
+      </Switch>
     </Router>
   </Provider>, document.getElementById('root'));
