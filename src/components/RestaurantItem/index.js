@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import Category from '../Category';
 import Rating from '../Rating';
 import './style';
@@ -18,13 +19,15 @@ class RestaurantItem extends Component {
         <div className="res-item__info">
           <div>
             <div className="res-item__header">
-              <div className="res-item__name">{data.getIn(['general', 'name'])}</div>
+              <Link to={`/restaurant/${data.get('id')}`} className="res-item__name">
+                {data.getIn(['general', 'name'])}
+              </Link>
               <Rating data={data.get('rating')} />
             </div>
             <div className="res-item__address">
               <i className="material-icons">location_on</i>
               <a 
-                className="res-item__link"
+                className="link"
                 href={`https://www.google.com/maps/search/${data.getIn(['address', 'latitude'])},${data.getIn(['address', 'longitude'])}`} 
                 target="_blank" 
                 rel="noopener noreferrer"

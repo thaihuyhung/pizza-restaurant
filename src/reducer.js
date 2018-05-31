@@ -1,6 +1,7 @@
 import { fromJS } from 'immutable'
 import { combineReducers } from 'redux-immutable'
-import restaurantsReducer from './containers/RestaurantList/reducer'
+import restaurantsReducer from './containers/RestaurantList/reducer';
+import restaurantReducer from './containers/RestaurantDetail/reducer';
 import { LOCATION_CHANGE } from 'react-router-redux'
 
 /*
@@ -36,5 +37,6 @@ function routeReducer(state = routeInitialState, action) {
  */
 export default combineReducers({
   routing: routeReducer,
-  restaurants: restaurantsReducer
+  restaurants: restaurantsReducer,
+  restaurant: restaurantReducer
 });

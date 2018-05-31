@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { Map as ImmutableMap } from 'immutable';
+import { fromJS } from 'immutable';
 import Checkbox from '../Checkbox';
 import './style';
 
@@ -10,11 +10,9 @@ class Select extends Component {
     super(props);
     this.ref = React.createRef();
     this.state = {
-      data: ImmutableMap({
+      data: fromJS({
         opened: false,
-        dropdownWidth: 120,
-        selectedItem: null,
-        selectedItems: ImmutableMap({})
+        dropdownWidth: 120
       })
     }
   }
@@ -43,45 +41,19 @@ class Select extends Component {
   }
 
   onSelectItem = (option) => {
-    const { multiple } = this.props;
-
-    if (multiple) {
-      this.setState(({ data }) => {
-        const optionKeyPath = ['selectedItems', option.get('key')];
-        if (data.getIn(optionKeyPath)) {
-          return {
-            data: data.deleteIn(optionKeyPath, () => option)
-          }
-        }
-        return {
-          data: data.updateIn(optionKeyPath, () => option)
-        }
-      }, () => {
-        const { onChange } = this.props;
-        if (onChange) {
-          onChange(this.state.data.get('selectedItems'));
-        }
-      });
-    } else {
-      this.setState(({ data }) => ({
-        data: data
-          .update('selectedItem', () => option)
-          .update('opened', () => false)
-      }), () => {
-        const { onChange } = this.props;
-        if (onChange) {
-          onChange(option);
-        }
-      });
+    const { onChange } = this.props;
+    if (onChange) {
+      onChange(option);
     }
   }
 
   renderCheckboxItems = (options) => {
-    const { data } = this.state;
-    return options.map((option) => 
+    const { selectedItems } = this.props;
+    return options.map((option) => (
       <li key={option.get('key')} onClick={() => this.onSelectItem(option)}>
-        <Checkbox checked={data.hasIn(['selectedItems', option.get('key')], false)}>{option.get('value')}</Checkbox>
+        <Checkbox checked={selectedItems.includes(option.get('key'))}>{option.get('value')}</Checkbox>
       </li>
+    )
     );
   }
 
@@ -92,13 +64,13 @@ class Select extends Component {
   }
 
   render() {
-    const { options, multiple, label, className: classname = '' } = this.props;
+    const { options, multiple, label, className: classname = '', selectedItems, selectedItem } = this.props;
     const { data } = this.state;
     return (
-      <div ref={this.ref} className={classNames('select', classname)}>
+      <div ref={this.ref} className={classNames('select', classname, { 'select--selected' : multiple ? selectedItems.size > 0 : selectedItem })}>
         <div className="select__header" onClick={this.handleToggleSelect}>
           <div className="select__label">{label}</div>
-          <i className="material-icons">arrow_drop_down</i>
+          <i className="material-icons select__arrow-icon">arrow_drop_down</i>
         </div>
         <ul 
           className={classNames('select__dropdown', { 'select__dropdown--open': data.get('opened')})}
@@ -117,7 +89,9 @@ Select.propTypes = {
   label: PropTypes.string,
   className: PropTypes.string,
   onChange: PropTypes.func,
-  multiple: PropTypes.bool
+  multiple: PropTypes.bool,
+  selectedItems: PropTypes.object,
+  selectedItem: PropTypes.string,
 };
 
 export default Select;

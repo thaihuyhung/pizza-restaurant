@@ -1,16 +1,22 @@
 .res-list {
-  padding: 24px;
   &__logo {
     width: 180px;
+  }
+  &__header {
+    display: flex;
+    align-content: center;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 32px;
   }
   &__actions {
     display: flex;
     align-content: center;
     justify-content: flex-end;
     align-items: center;
-    margin-bottom: 32px;
   }
   &__action {
+    width: 220px;
     &:not(:last-child) {
       margin-right: 16px;
     }

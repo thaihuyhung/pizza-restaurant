@@ -25,7 +25,7 @@ module.exports = {
         ]
       },
       {
-        test: /\.(jpg|png|gif)$/,
+        test: /\.(jpg|png|gif|svg)$/,
         use: [
           'file-loader',
           {
@@ -44,6 +44,9 @@ module.exports = {
                 quality: '75-90',
                 speed: 3,
               },
+              svgo: {
+                cleanupAttrs: true
+              }
             },
           },
         ],
@@ -64,7 +67,8 @@ module.exports = {
   ],
   output: {
     filename: '[name].bundle.js',
-    path: path.resolve(__dirname, 'dist')
+    path: path.resolve(__dirname, 'dist'),
+    publicPath: "/"
   },
   resolve: {
     extensions: ['.js', '.jsx', '.scss'],

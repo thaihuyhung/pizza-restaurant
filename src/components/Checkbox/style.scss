@@ -8,6 +8,14 @@
       display: inline-block;
       vertical-align: middle;
     }
+    span {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      cursor: default;
+      box-sizing: border-box;
+      max-width: calc(100% - 24px);
+    }
   }
   [type="checkbox"]:checked + label {
     .material-icons {

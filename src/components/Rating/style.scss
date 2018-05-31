@@ -5,6 +5,8 @@
   align-items: center;
   position: relative;
   font-size: 13px;
+  width: 210px;
+  height: 32px;
   &:hover {
     .rating__total-detail {
       transform: scale(1);

@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import './style';
 
+const numberFormatter = new Intl.NumberFormat('de-DE');
+
 class Rating extends Component {
   render() {
     const { data } = this.props;
@@ -10,7 +12,7 @@ class Rating extends Component {
     return (
       <div className="rating">
         <div className="rating__stars">
-          <div className="rating__stars--active" style={{ width: `${data.get('average') / 5 * 100}%` }}>
+          <div className="rating__stars--active" style={{ width: `${Math.min(data.get('average') / 5 * 100, 100)}%` }}>
             {
               stars.map(star => <i key={star} className="material-icons">star</i>)
             }
@@ -22,16 +24,16 @@ class Rating extends Component {
           </div>
         </div>
         <div className="rating__total">
-          {total} Ratings
+          {numberFormatter.format(total)} Ratings
         </div>
         <div className="rating__total-detail">
             {
               stars.reverse().map((value) => (
                 <div key={value} className="rating__progress">
                   <div className="rating__progress-label">{value === 1 ? '1 star' : `${value} stars`}</div>
-                  <div className="rating__progress--active" style={{ width: `${data.get(`star${value}`) / total * 100}%` }}/>
+                  <div className="rating__progress--active" style={{ width: `${Math.min(data.get(`star${value}`) / total * 100, 100)}px` }}/>
                   <div className="rating__progress--default" />
-                  <div className="rating__progress-count">{data.get(`star${value}`)}</div>
+                  <div className="rating__progress-count">{numberFormatter.format(data.get(`star${value}`))}</div>
                 </div>
               ))
             }

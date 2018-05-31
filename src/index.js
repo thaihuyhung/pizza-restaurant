@@ -19,9 +19,9 @@ ReactDOM.render(
   <Provider store={store}>
     <Router history={history}>
       <Switch>
-        <Route exact path="/restaurant" component={RestaurantDetail} />
-        <Route exact path="/restaurants" component={RestaurantList} />
-        <Redirect from="*" to="/restaurants"/>
+        <Route path="/restaurant" component={RestaurantDetail} />
+        <Route path="/restaurants" component={RestaurantList} />
+        <Redirect path="/" to="/restaurants" />
       </Switch>
     </Router>
   </Provider>, document.getElementById('root'));

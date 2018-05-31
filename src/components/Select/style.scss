@@ -3,6 +3,11 @@
   position: relative;
   min-width: 180px;
   box-sizing: border-box;
+  &--selected {
+    .select__arrow-icon {
+      color: #1a9cb7;
+    }
+  }
   &__header {
     display: flex;
     align-content: center;
@@ -28,6 +33,11 @@
   }
   &__label {
     padding: 0 8px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: calc(100% - 33px);
+    box-sizing: border-box;
   }
   &__dropdown {
     padding: 0;
