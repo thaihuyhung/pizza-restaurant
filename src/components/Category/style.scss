@@ -1,11 +1,14 @@
 .category {
-  background-color: #55849e;
-  border: 1px solid #55849e;
+  background-color: #8f8f8f;
+  border: 1px solid #8f8f8f;
   color: #FFF;
-  padding: 4px;
+  padding: 2px 4px;
   border-radius: 2px;
   transition: all 250ms linear;
   font-size: 13px;
   text-transform: capitalize;
   display: inline-flex;
+  &:not(:last-child) {
+    margin-right: 8px;
+  }
 }

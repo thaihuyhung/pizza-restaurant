@@ -4,11 +4,13 @@ import {
 } from './action';
 import { QUERY_RESTAURANT } from './constant';
 import { call, put, takeLatest } from 'redux-saga/effects';
-import request from '../../utils/request';
+import { showLoading, hideLoading } from 'react-redux-loading-bar';
+import utils from 'src/utils';
 
 function* doQueryRestaurant({ param }) {
   try {
-    const response = yield call(request, 'https://mockapi.pizza.de/v1/restaurants/' + param.id);
+    yield put(showLoading());
+    const response = yield call(utils.request, 'https://mockapi.pizza.de/v1/restaurants/' + param.id);
     if (response.error) {
       yield put(queryRestaurantError(response.error));
       return;
@@ -16,6 +18,8 @@ function* doQueryRestaurant({ param }) {
     yield put(queryRestaurantSuccess(response));
   } catch (error) {
     yield put(queryRestaurantError(error));
+  } finally {
+    yield put(hideLoading());
   }
 }
 

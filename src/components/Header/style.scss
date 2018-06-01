@@ -1,0 +1,22 @@
+.header {
+  background: #ffc502;
+  height: 60px;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1001;
+  box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2), 0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);
+  &__content {
+    margin: 0 auto;
+    max-width: 980px;
+    padding: 16px;
+    font-size: 24px;
+    font-weight: bold;
+    box-sizing: border-box;
+  }
+  &__loading-bar {
+    background-color: #1a9cb7;
+    height: 3px; 
+    position: fixed;
+  }
+}

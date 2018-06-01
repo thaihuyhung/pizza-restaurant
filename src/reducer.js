@@ -2,7 +2,8 @@ import { fromJS } from 'immutable'
 import { combineReducers } from 'redux-immutable'
 import restaurantsReducer from './containers/RestaurantList/reducer';
 import restaurantReducer from './containers/RestaurantDetail/reducer';
-import { LOCATION_CHANGE } from 'react-router-redux'
+import { LOCATION_CHANGE } from 'react-router-redux';
+import { loadingBarReducer } from 'react-redux-loading-bar';
 
 /*
  * routeReducer
@@ -15,6 +16,7 @@ import { LOCATION_CHANGE } from 'react-router-redux'
 // Initial routing state
 const routeInitialState = fromJS({
   locationBeforeTransitions: null,
+  location: null,
 });
 
 /**
@@ -25,6 +27,7 @@ function routeReducer(state = routeInitialState, action) {
     /* istanbul ignore next */
     case LOCATION_CHANGE:
       return state.merge({
+        locationBeforeTransitions: state.get('location'),
         location: action.payload,
       });
     default:
@@ -36,7 +39,8 @@ function routeReducer(state = routeInitialState, action) {
  * Creates the main reducer with the dynamically injected ones
  */
 export default combineReducers({
-  routing: routeReducer,
+  router: routeReducer,
+  loadingBar: loadingBarReducer,
   restaurants: restaurantsReducer,
   restaurant: restaurantReducer
 });

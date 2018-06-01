@@ -1,11 +1,29 @@
+html {
+  overflow:auto;
+  height: 100%;
+}
 body {
   font-family: 'Roboto';
+  font-size: 14px;
+  margin: 0;
+  padding: 0;
+  color: #2a2a2a;
+  height: 100%;
+}
+.page-container {
+  background: #F5F5F5;
+}
+.page-body {
   margin: 0 auto;
   max-width: 980px;
   padding: 0;
-  background: #F5F5F5;
-  font-size: 14px;
+  padding-top: 60px;
+  min-height: calc(100vh - 60px);
+  position: relative;
+  overflow: hidden;
 }
+
+/* Google Material Icons */
 .material-icons {
   font-family: 'Material Icons';
   font-weight: normal;

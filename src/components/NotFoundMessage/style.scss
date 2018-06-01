@@ -1,0 +1,20 @@
+.not-found-msg {
+  max-width: 460px;
+  &__title {
+    font-size: 64px;
+    font-weight: bold;
+    text-align: center;
+  }
+  &__subtitle {
+    font-size: 18px;
+    text-align: center;
+  }
+  &__information {
+    padding: 16px;
+    background: #ededed;
+    color: #8c8c8c;
+    font-size: 14px;
+    font-weight: 300;
+    margin-top: 16px;
+  }
+}

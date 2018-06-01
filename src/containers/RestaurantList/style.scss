@@ -1,6 +1,12 @@
 .res-list {
+  background: #FFF;
+  padding: 16px;
   &__logo {
     width: 180px;
+    height: 180px;
+  }
+  &__result-msg {
+    color: #387d97;
   }
   &__header {
     display: flex;

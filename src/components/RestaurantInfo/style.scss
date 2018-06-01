@@ -1,0 +1,22 @@
+.restaurant-info {
+  &__line {
+    display: flex;
+    justify-content: flex-start;
+    align-content: center;
+    align-items: center;
+    margin-bottom: 8px;
+    .material-icons {
+      font-size: 18px;
+      vertical-align: middle;
+      margin-right: 4px;
+    }
+  }
+  &__opening-status {
+    margin-right: 8px;
+    color: #4caf50;
+    font-weight: 700;
+    &--closed {
+      color: #989898;
+    }
+  }
+}

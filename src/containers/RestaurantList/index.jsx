@@ -8,7 +8,10 @@ import queryString from 'query-string';
 import RestaurantItem from 'src/components/RestaurantItem';
 import Select from 'src/components/Select';
 import logo from 'assets/logo.jpg';
+import RestaurantListSkeleton from './skeleton/index'
+import Image from 'src/components/Image';
 import './style';
+import SkeletonLoading from '../../components/SkeletonLoading';
 
 class RestaurantList extends Component {
   constructor(props) {
@@ -46,7 +49,7 @@ class RestaurantList extends Component {
   componentDidUpdate(prevProps) {
     const { restaurants, history } = this.props;
     if (!prevProps.restaurants.equals(restaurants)) {
-      const searchQuery = queryString.parse(history.location.search, {arrayFormat: 'bracket'});
+      const searchQuery = queryString.parse(history.location.search, { arrayFormat: 'bracket' });
       const searchQueryMap = fromJS(searchQuery);
       this.filter(searchQueryMap.get('filter', fromJS([])), searchQueryMap.get('sort'));
     }
@@ -74,11 +77,11 @@ class RestaurantList extends Component {
     const filteredRestaurants = !filterItems.size ? restaurants : restaurants
       .filter(res => res.getIn(['general', 'categories'], []).get(0, '').split(',')
         .some(category => filterItems.includes(category)));
-    const filterLabel = filterItems.size === 0 ? 
-      'Filter' : filterItems.size === 1 ? 
+    const filterLabel = filterItems.size === 0 ?
+      'Filter' : filterItems.size === 1 ?
         `Filter by ${filterItems.first().replace(/-/g, ' ')}` : `Filter by ${filterItems.size} items`;
     const sortLabel = !sortItem ? 'Sort' : this.sortOptions.find(x => x.get('key') === sortItem).get('value');
-    
+
     const searchQuery = this.formSearchQuery(filterItems, sortItem);
     history.push({
       search: searchQuery
@@ -99,11 +102,11 @@ class RestaurantList extends Component {
       case 'nameASC':
         return list.sort(((a, b) => a.getIn(['general', 'name']).localeCompare(b.getIn(['general', 'name']))));
       case 'nameDESC':
-        return list.sort(((a, b) => a.getIn(['general', 'name']).localeCompare(b.getIn(['general', 'name'])))).reverse(); 
+        return list.sort(((a, b) => a.getIn(['general', 'name']).localeCompare(b.getIn(['general', 'name'])))).reverse();
       case 'reviewACS':
         return list.sort(((a, b) => parseFloat(a.getIn(['rating', 'average'])) - parseFloat(b.getIn(['rating', 'average']))));
       case 'reviewDESC':
-        return list.sort(((a, b) => parseFloat(a.getIn(['rating', 'average'])) - parseFloat(b.getIn(['rating', 'average']))));  
+        return list.sort(((a, b) => parseFloat(a.getIn(['rating', 'average'])) - parseFloat(b.getIn(['rating', 'average']))));
       default:
         return list;
     }
@@ -113,43 +116,45 @@ class RestaurantList extends Component {
     return queryString.stringify({
       filter: filterItems.toArray(),
       sort: sortItem
-    }, {arrayFormat: 'bracket'});
+    }, { arrayFormat: 'bracket' });
   }
-  
+
   render() {
-    const { categories } = this.props;
+    const { categories, history, loading } = this.props;
     const { data } = this.state;
     const filteredRestaurants = data.get('filteredRestaurants');
     const filterItems = data.get('filterItems');
     const sortItem = data.get('sortItem');
     return (
-      <div className="res-list">
-        <img className="res-list__logo" src={logo} />
-        <div className="res-list__header">
-          <div>We found {filteredRestaurants.size} restaurants for you</div>
-          <div className="res-list__actions">
-            <Select 
-              className="res-list__action" 
-              label={data.get('filterLabel')} 
-              options={categories}
-              selectedItems={filterItems}
-              multiple 
-              onChange={this.onUpdateFilter} />
-            <Select 
-              ref={this.sortRef}
-              className="res-list__action" 
-              label={data.get('sortLabel')} 
-              options={this.sortOptions} 
-              selectedItem={sortItem}
-              onChange={this.onUpdateSort}
-            />
+      <SkeletonLoading loading={loading} skeletonTemplate={<RestaurantListSkeleton />} >
+        <div key="content" className="res-list">
+          <Image className="res-list__logo" src={logo} />
+          <div className="res-list__header">
+            <div className="res-list__result-msg">We found <b>{filteredRestaurants.size}</b> restaurants for you</div>
+            <div className="res-list__actions">
+              <Select
+                className="res-list__action"
+                label={data.get('filterLabel')}
+                options={categories}
+                selectedItems={filterItems}
+                multiple
+                onChange={this.onUpdateFilter} />
+              <Select
+                ref={this.sortRef}
+                className="res-list__action"
+                label={data.get('sortLabel')}
+                options={this.sortOptions}
+                selectedItem={sortItem}
+                onChange={this.onUpdateSort}
+              />
+            </div>
           </div>
+          {
+            !!filteredRestaurants.size &&
+            filteredRestaurants.map((restaurant, index) => <RestaurantItem key={index} data={restaurant} history={history} />)
+          }
         </div>
-        {
-          !!filteredRestaurants.size &&
-          filteredRestaurants.map((restaurant, index) => <RestaurantItem key={index} data={restaurant} />)
-        }
-      </div>
+      </SkeletonLoading>
     );
   }
 }
@@ -159,6 +164,7 @@ RestaurantList.propTypes = {
   restaurants: PropTypes.object,
   categories: PropTypes.object,
   history: PropTypes.object,
+  loading: PropTypes.bool
 }
 
 const mapStateToProps = state => ({
