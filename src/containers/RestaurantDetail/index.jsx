@@ -25,8 +25,16 @@ class RestaurantDetail extends Component {
     }
   }
 
+  /**
+   * @function backToSearch
+   * @description Method handle action when user click on back to result page
+   */
   backToSearch = () => {
     const { history, locationBeforeTransition } = this.props;
+    /**
+     * We track the current location and its previous value in store.
+     * Based on this, we could navigate to search screen with the same filter/sort/page data
+     */
     if (locationBeforeTransition) {
       const search = locationBeforeTransition.get('search');
       const pathname = locationBeforeTransition.get('pathname');
@@ -41,7 +49,13 @@ class RestaurantDetail extends Component {
     }
   }
 
+  /**
+   * @function onAddToCart
+   * @param  object item selected item
+   * @description Handle action when user click add item 
+   */
   onAddToCart = (item) => {
+    // TODO Implement Add to card
     // eslint-disable-next-line
     console.log('onAddToCart', item);
   }

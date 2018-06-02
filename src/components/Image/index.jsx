@@ -18,7 +18,9 @@ class CustomImage extends Component {
 
   shouldComponentUpdate(nextProps, { data: nextData }) {
     const { data } = this.state;
-    return data.get('loaded') !== nextData.get('loaded') || data.get('backgroundImage') !== nextData.get('backgroundImage');
+    return data.get('loaded') !== nextData.get('loaded') ||
+      data.get('backgroundImage') !== nextData.get('backgroundImage') ||
+      this.props.src !== nextProps.src;
   }
 
   componentDidMount() {
@@ -27,15 +29,15 @@ class CustomImage extends Component {
     image.onload = () => {
       this.setState(({ data }) => ({
         data: data
-        .update('loaded', () => true)
-        .update('backgroundImage', () => `url(${encodeURI(src)})`)
+          .update('loaded', () => true)
+          .update('backgroundImage', () => encodeURI(src))
       }));
     }
     image.onerror = () => {
       this.setState(({ data }) => ({
         data: data
-        .update('loaded', () => true)
-        .update('backgroundImage', () => `url(${defaultImage})`)
+          .update('loaded', () => true)
+          .update('backgroundImage', () => defaultImage)
       }));
     }
     image.src = src;
@@ -48,7 +50,11 @@ class CustomImage extends Component {
     const backgroundImage = data.get('backgroundImage');
     const { className } = this.props;
     return (
-      <div className={classNames('image', className, { 'skeleton': !loaded })} style={{ backgroundImage }}></div>
+      <div className={classNames('image', className, { 'skeleton': !loaded })}>
+        {
+          backgroundImage && <img src={backgroundImage} />
+        }
+      </div>
     );
   }
 }

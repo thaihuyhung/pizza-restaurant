@@ -1,3 +1,4 @@
+@import 'src/scss/variable';
 .res-list {
   background: #FFF;
   padding: 16px;
@@ -25,6 +26,41 @@
     width: 220px;
     &:not(:last-child) {
       margin-right: 16px;
+    }
+  }
+  &--error {
+    display: flex;
+    justify-content: center;
+    background: #fff;
+    min-height: calc(100vh - 60px - 82px)
+  }
+}
+
+@media #{$screen-xs} {
+  .res-list {
+    padding: 8px;
+    &__header {
+      flex-direction: column;
+      margin-bottom: 16px;
+      align-items: stretch;
+    }
+    &__logo {
+      display: none;
+    }
+    &__result-msg {
+      order: 2;
+    }
+    &__actions {
+      order: 1;
+      justify-content: space-between;
+      margin-bottom: 16px;
+    }
+    &__action {
+      width: calc(50% - 8px);
+      min-width: calc(50% - 8px);
+      &:not(:last-child) {
+        margin-right: 0;
+      }
     }
   }
 }

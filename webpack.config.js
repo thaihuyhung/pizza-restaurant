@@ -13,9 +13,10 @@ module.exports = {
       {
         test: /\.jsx?$/,
         exclude: /node_modules/,
-        use: {
-          loader: "babel-loader"
-        }
+        use: [
+          "babel-loader",
+          "eslint-loader",
+        ]
       }, {
         test: /\.scss$/,
         use: [
@@ -50,7 +51,13 @@ module.exports = {
             },
           },
         ],
-      }
+      },
+      {
+        test: /\.(ttf|eot|woff|woff2)$/,
+        use: {
+          loader: "file-loader"
+        },
+      },
     ]
   },
   plugins: [

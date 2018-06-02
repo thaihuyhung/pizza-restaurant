@@ -9,7 +9,7 @@ const Header = ({ fixed }) => {
     <header className={classNames('header', {'header--fixed': fixed})}>
       <LoadingBar className="header__loading-bar" />
       <div className="header__content">
-        PIZZA.DE
+        <a href="/">PIZZA.DE</a>
       </div>
     </header>
   );

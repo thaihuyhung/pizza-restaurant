@@ -1,3 +1,4 @@
+@import 'src/scss/variable';
 .res-item {
   box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 2px 1px -1px rgba(0, 0, 0, 0.12);
   display: flex;
@@ -53,7 +54,9 @@
     align-content: center;
     justify-content: flex-start;
     align-items: center;
-    margin-bottom: 8px;
+    &:not(:last-child) {
+      margin-bottom: 8px;
+    }
     .material-icons {
       font-size: 18px;
       margin-right: 8px;
@@ -64,5 +67,29 @@
     padding: 16px;
     width: calc(100% - 160px);
     box-sizing: border-box;
+  }
+}
+
+@media #{$screen-xs} {
+  .res-item {
+    flex-direction: column;
+    &--online {
+      right: 4px;
+      left: auto;
+      width: 14px;
+      height: 14px;
+    }
+    &__logo {
+      width: auto;
+      height: auto;
+    }
+    &__main-info {
+      padding: 8px;
+      width: 100%;
+    }
+    &__header {
+      flex-direction: column;
+      justify-content: flex-start;
+    }
   }
 }

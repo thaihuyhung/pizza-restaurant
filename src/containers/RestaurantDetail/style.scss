@@ -1,3 +1,4 @@
+@import 'src/scss/variable';
 .restaurant {
   margin-bottom: 32px;
   &__navigation {
@@ -139,5 +140,35 @@
     justify-content: center;
     background: #fff;
     min-height: calc(100vh - 60px - 82px)
+  }
+}
+
+@media #{$screen-xs} {
+  .restaurant {
+    &__navigation {
+      padding: 8px 8px 0 8px;
+    }
+    &__header {
+      padding: 8px;
+      flex-direction: column;
+    }
+    &__logo {
+      width: auto;
+      height: auto;
+    }
+    &__main-info {
+      width: 100%;
+      padding: 0;
+    }
+    &__title {
+      flex-direction: column;
+      margin-bottom: 8px;
+    }
+    &__section-header {
+      padding: 0 8px;
+    }
+    &__section li {
+      padding: 8px;
+    }
   }
 }

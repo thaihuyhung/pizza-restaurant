@@ -1,9 +1,11 @@
+@import 'src/scss/variable';
+
 html {
   overflow:auto;
   height: 100%;
 }
 body {
-  font-family: 'Roboto';
+  font-family: 'Roboto', sans-serif;
   font-size: 14px;
   margin: 0;
   padding: 0;
@@ -12,6 +14,7 @@ body {
 }
 .page-container {
   background: #F5F5F5;
+  overflow: hidden;
 }
 .page-body {
   margin: 0 auto;
@@ -20,34 +23,20 @@ body {
   padding-top: 60px;
   min-height: calc(100vh - 60px);
   position: relative;
-  overflow: hidden;
+  // overflow: hidden;
 }
 
 /* Google Material Icons */
 .material-icons {
-  font-family: 'Material Icons';
-  font-weight: normal;
-  font-style: normal;
-  font-size: 24px;  
   color: #727272;
-  display: inline-block;
-  line-height: 1;
-  text-transform: none;
-  letter-spacing: normal;
-  word-wrap: normal;
-  white-space: nowrap;
-  direction: ltr;
+}
 
-  /* Support for all WebKit browsers. */
-  -webkit-font-smoothing: antialiased;
-  /* Support for Safari and Chrome. */
-  text-rendering: optimizeLegibility;
-
-  /* Support for Firefox. */
-  -moz-osx-font-smoothing: grayscale;
-
-  /* Support for IE. */
-  font-feature-settings: 'liga';
+@font-face {
+  font-family: 'Material Icons';
+  font-style: normal;
+  font-weight: 400;
+  src: url(/assets/materialicons.woff2) format('woff2'), 
+    url(https://fonts.gstatic.com/s/materialicons/v38/flUhRq6tzZclQEJ-Vdg-IuiaDsNcIhQ8tQ.woff2) format('woff2');
 }
 
 .link {
@@ -59,3 +48,4 @@ body {
     text-decoration: underline;
   }
 }
+

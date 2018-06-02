@@ -45,6 +45,7 @@ class Select extends Component {
     if (onChange) {
       onChange(option);
     }
+    this.handleToggleSelect();
   }
 
   renderCheckboxItems = (options) => {

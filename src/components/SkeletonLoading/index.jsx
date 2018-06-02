@@ -28,13 +28,15 @@ class SkeletonLoading extends Component {
         this.setState(({ data }) => ({
           data: data.update('removed', () => true)
         }))
-      }, 1300);
+      }, 1500);
     }
     return (
       [
         !removed && 
           <div key="skeleton" className={classNames('skeleton-loading', { 'skeleton-loading--loaded' : !loading})}>
-            {skeletonTemplate}
+            <div className="skeleton-loading__body">
+              {skeletonTemplate}
+            </div>
           </div>,
         !loading && !hasError && children,
         hasError && errorTemplate

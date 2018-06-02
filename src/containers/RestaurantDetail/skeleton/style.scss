@@ -1,3 +1,5 @@
+@import 'src/scss/variable';
+
 .res-detail-skeleton {
   &__header {
     background: #fff;
@@ -99,5 +101,42 @@
   &__item-add {
     height: 34px;
     width: 60px;
+  }
+}
+
+@media #{$screen-xs} {
+  .res-detail-skeleton {
+    &__header {
+      padding: 8px;
+    }
+    &__info {
+      flex-direction: column;
+    }
+    &__image {
+      width: 100%;
+      height: 300px;
+      margin-bottom: 16px;
+    }
+    &__main-info {
+      width: 100%;
+      padding: 0;
+    }
+    &__tile-rating {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    &__title {
+      height: 24px;
+      margin-bottom: 4px;
+    }
+    &__rating {
+      height: 20px;
+    }
+    &__section-header {
+      padding: 8px;
+    }
+    &__section-item {
+      padding: 8px;
+    }
   }
 }
