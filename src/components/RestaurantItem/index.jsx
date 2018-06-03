@@ -26,6 +26,12 @@ const RestaurantItem = ({ data, history }) => {
     <div className="res-item" onClick={onSelect}>
       <Image className="res-item__logo" src={data.getIn(['general', 'logo_uri'])} />
       <div className={online ? 'res-item--online' : 'res-item--offline'}></div>
+      <div className="res-item__header--xs">
+          <div className="res-item__name">
+            {data.getIn(['general', 'name'])}
+          </div>
+          <Rating data={data.get('rating')} />
+      </div>
       <div className="res-item__main-info">
         <div className="res-item__header">
           <div className="res-item__name">

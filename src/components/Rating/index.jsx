@@ -21,7 +21,7 @@ const Rating = ({ data }) => {
         </div>
       </div>
       <div className="rating__total">
-        {numberFormatter.format(total)} Ratings
+        ({numberFormatter.format(total)})
       </div>
       <div className="rating__total-detail">
         {

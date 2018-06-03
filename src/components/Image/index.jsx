@@ -24,6 +24,10 @@ class CustomImage extends Component {
   }
 
   componentDidMount() {
+    /**
+     * Improving UX by display skeleton loading when image is loading.
+     * In case the image url is broken, we show a default image
+     */
     const { src } = this.props;
     let image = new Image();
     image.onload = () => {

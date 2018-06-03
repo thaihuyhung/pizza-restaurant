@@ -18,6 +18,10 @@ const RestaurantListSkeleton = () => {
         items.map((item, index) => (
           <div key={index} className="restaurants-skeleton__item">
             <div className="restaurants-skeleton__item-logo skeleton"></div>
+            <div className="restaurants-skeleton__item-header--xs">
+                <div className="restaurants-skeleton__item-name skeleton"></div>
+                <div className="restaurants-skeleton__item-rating skeleton"></div>
+              </div>
             <div className="restaurants-skeleton__item-info">
               <div className="restaurants-skeleton__item-header">
                 <div className="restaurants-skeleton__item-name skeleton"></div>

@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import configureStore from './configureStore';
+import configureStore from './containers/App/configureStore';
 import createHistory from 'history/createBrowserHistory'
-import rootSaga from './saga';
+import rootSaga from './containers/App/saga';
 import App from './containers/App';
 
 const initialState = {};
