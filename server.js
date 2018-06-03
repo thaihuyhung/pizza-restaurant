@@ -1,27 +1,29 @@
+/* eslint-disable */
 const express = require('express');
 const path = require('path');
+const fs = require('fs');
 const app = express();
 const webpack = require('webpack');
-const webpackConfig = require('./webpack.config');
+const webpackConfigDev = require('./webpack.dev');
+const webpackConfigProd = require('./webpack.prod');
 const opn = require('opn');
 
 const port = process.env.PORT || 4000;
 const __DEV__ = process.env.NODE_ENV === 'development';
-// const __PROD__ = process.env.NODE_ENV === 'production';
 
 app.use(express.static(__dirname))
 
 if (__DEV__) {
-  const compiler = webpack(webpackConfig)
+  const compiler = webpack(webpackConfigDev)
 
   app.use(require('webpack-dev-middleware')(compiler, {
-    publicPath  : '/',
-    contentBase : path.resolve(__dirname, '/src'),
-    hot         : true,
-    quiet       : false,
-    noInfo      : false,
-    lazy        : false,
-    stats       : 'normal',
+    publicPath: '/',
+    contentBase: path.resolve(__dirname, '/src'),
+    hot: true,
+    quiet: false,
+    noInfo: false,
+    lazy: false,
+    stats: 'normal',
     open: true,
     openPage: 'localhost:' + port
   }));
@@ -43,14 +45,11 @@ if (__DEV__) {
     });
   });
 } else {
-
-  // Serving ~/dist by default. Ideally these files should be served by
-  // the web server and not the app server, but this helps to demo the
-  // server in production.
-  app.use(express.static(path.resolve(__dirname, 'dist')))
+  // TODO SSR
 }
 
 app.listen(port, () => {
   console.log(`Listening on port ${port}`);
   opn('http://localhost:' + port);
 });
+

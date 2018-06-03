@@ -5,6 +5,11 @@ import createHistory from 'history/createBrowserHistory'
 import rootSaga from './containers/App/saga';
 import App from './containers/App';
 
+if (process.env.NODE_ENV !== 'production') {
+  // eslint-disable-next-line
+  console.log('Development mode!');
+}
+
 const initialState = {};
 
 const history = createHistory();
