@@ -5,8 +5,8 @@ import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'react-router-redux';
 import RestaurantList from '../RestaurantList/loadable';
 import RestaurantDetail from '../RestaurantDetail/loadable';
-import Header from 'src/components/Header';
-import Footer from 'src/components/Footer';
+import Header from '../../components/Header';
+import Footer from '../../components/Footer';
 import './style';
 
 class App extends Component {

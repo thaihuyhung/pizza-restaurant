@@ -5,7 +5,7 @@ import {
 import { QUERY_RESTAURANT } from './constant';
 import { call, put, takeLatest } from 'redux-saga/effects';
 import { showLoading, hideLoading } from 'react-redux-loading-bar';
-import utils from 'src/utils';
+import utils from '../../utils';
 
 function* doQueryRestaurant({ param }) {
   try {

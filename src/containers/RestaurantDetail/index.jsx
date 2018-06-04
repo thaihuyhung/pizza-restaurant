@@ -4,13 +4,13 @@ import { queryRestaurant } from './action';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { List as ImmutableList } from 'immutable';
-import Rating from 'src/components/Rating';
-import Image from 'src/components/Image';
+import Rating from '../../components/Rating';
+import Image from '../../components/Image';
 import './style';
-import RestaurantInfo from 'src/components/RestaurantInfo';
-import LoadingSkeleton from 'src/components/SkeletonLoading'
+import RestaurantInfo from '../../components/RestaurantInfo';
+import LoadingSkeleton from '../../components/SkeletonLoading'
 import RestaurantDetailSkeleton from './skeleton/index';
-import NotFoundMessage from 'src/components/NotFoundMessage';
+import NotFoundMessage from '../../components/NotFoundMessage';
 
 const currencyFormatter = new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'EUR' });
 class RestaurantDetail extends Component {

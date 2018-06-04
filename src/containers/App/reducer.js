@@ -1,7 +1,7 @@
 import { fromJS } from 'immutable'
 import { combineReducers } from 'redux-immutable'
-import restaurantsReducer from 'src/containers/RestaurantList/reducer';
-import restaurantReducer from 'src/containers/RestaurantDetail/reducer';
+import restaurantsReducer from '../../containers/RestaurantList/reducer';
+import restaurantReducer from '../../containers/RestaurantDetail/reducer';
 import { LOCATION_CHANGE } from 'react-router-redux';
 import { loadingBarReducer } from 'react-redux-loading-bar';
 

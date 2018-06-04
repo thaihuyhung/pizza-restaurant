@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Rating from '../Rating';
-import RestaurantInfo from 'src/components/RestaurantInfo';
-import Image from 'src/components/Image';
+import RestaurantInfo from '../../components/RestaurantInfo';
+import Image from '../../components/Image';
 import './style';
 
 const RestaurantItem = ({ data, history }) => {

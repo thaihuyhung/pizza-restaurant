@@ -1,11 +1,8 @@
-/* eslint-disable */
 const express = require('express');
 const path = require('path');
-const fs = require('fs');
 const app = express();
 const webpack = require('webpack');
 const webpackConfigDev = require('./webpack.dev');
-const webpackConfigProd = require('./webpack.prod');
 const opn = require('opn');
 
 const port = process.env.PORT || 4000;
@@ -45,10 +42,11 @@ if (__DEV__) {
     });
   });
 } else {
-  // TODO SSR
+  // Trying to implement SSR in ssr folder
 }
 
 app.listen(port, () => {
+  // eslint-disable-next-line
   console.log(`Listening on port ${port}`);
   opn('http://localhost:' + port);
 });

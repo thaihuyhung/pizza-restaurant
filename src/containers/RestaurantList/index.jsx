@@ -5,15 +5,15 @@ import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { fromJS } from 'immutable';
 import queryString from 'query-string';
-import RestaurantItem from 'src/components/RestaurantItem';
-import Select from 'src/components/Select';
-import logo from 'assets/logo.jpg';
+import RestaurantItem from '../../components/RestaurantItem';
+import Select from '../../components/Select';
+import logo from '../../../assets/logo.jpg';
 import RestaurantListSkeleton from './skeleton/index'
-import Image from 'src/components/Image';
+import Image from '../../components/Image';
 import './style';
 import SkeletonLoading from '../../components/SkeletonLoading';
-import Pagination from 'src/components/Pagination';
-import NotFoundMessage from 'src/components/NotFoundMessage'
+import Pagination from '../../components/Pagination';
+import NotFoundMessage from '../../components/NotFoundMessage'
 
 class RestaurantList extends Component {
   constructor(props) {

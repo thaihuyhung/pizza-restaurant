@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { List as ImmutableList } from 'immutable';
-import utils from 'src/utils';
+import utils from '../../utils'
 import './style';
 
 const currencyFormatter = new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'EUR' });

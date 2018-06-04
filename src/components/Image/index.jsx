@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import defaultImage from 'assets/default-image.png';
+import defaultImage from '../../../assets/default-image.png';
 import { fromJS } from 'immutable';
 import classNames from 'classnames';
 import './style';
