@@ -16,11 +16,11 @@ const currencyFormatter = new Intl.NumberFormat('de-DE', { style: 'currency', cu
 class RestaurantDetail extends Component {
 
   componentDidMount() {
-    const { history, queryRestaurant } = this.props;
-    const path = history.location.pathname.split('/');
-    if (path[1] && path[1] === 'restaurant' && path[2]) {
+    const { queryRestaurant, match } = this.props;
+    const { params } = match;
+    if (params && params['id']) {
       queryRestaurant({
-        id: path[2]
+        id: params['id']
       });
     }
   }
@@ -160,6 +160,7 @@ class RestaurantDetail extends Component {
 
 RestaurantDetail.propTypes = {
   history: PropTypes.object,
+  match: PropTypes.object,
   queryRestaurant: PropTypes.func,
   restaurant: PropTypes.object,
   locationBeforeTransition: PropTypes.object,

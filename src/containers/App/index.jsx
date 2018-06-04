@@ -23,7 +23,7 @@ class App extends Component {
             <Header />
             <div className="page-body">
               <Switch>
-                <Route path="/restaurant" component={RestaurantDetail} />
+                <Route path="/restaurant/:id" component={RestaurantDetail} />
                 <Route path="/restaurants" component={RestaurantList} />
                 <Redirect path="/" to="/restaurants" />
               </Switch>
